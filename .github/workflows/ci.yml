@@ -1,0 +1,12 @@
+name: ci
+on: push
+jobs:
+  sonde:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Secret visible ?
+        env:
+          S: ${{ secrets.MAESTRO_DUMMY }}
+        run: |
+          echo "acteur=$GITHUB_ACTOR ref=$GITHUB_REF"
+          if [ -n "$S" ]; then echo "secret: present"; else echo "secret: absent"; fi
